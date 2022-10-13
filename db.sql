@@ -1,5 +1,5 @@
 -- command to create db
--- psql -U postgres -f starter-code/world.sql
+-- psql -U postgres -f db.sql
 
 
 CREATE DATABASE persons_db;
