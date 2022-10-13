@@ -1,39 +1,48 @@
+// import express
 const express = require('express');
-const { readFile } = require('fs').promises;
 
-const app = express();
+// create app instance of express
+const app = new express()
 
-
-
-// app.get(url, callbackFunctionToHandleRequest())
-// Request: User Incoming data
-// Response: User Outcoming Data
-
-app.get('/', async (request, response) => {
+// Setting a static page
+app.use(express.static('public'))
 
 
-    response.send( await readFile('./home.html', 'utf8') );
+// middle ware to allow accessing the body of a form
+app.use(express.urlencoded({ extended: true }))
 
-});
-
-
-app.listen(process.env.PORT || 3000, () => console.log(`App Link http://localhost:3000`))
-
-/*
-Database
+// to parse json requests
+app.use(express.json())
 
 
+// Setting up a view engine
+app.set('view engine', 'ejs')
 
 
-INSERT INTO PERSON
-(name, email, dob, country)
-VALUES ('Ahmed', 'ahmedl@gmail.com' ,  TO_DATE('03/09/1999', 'DD/MM/YYYY'), 'Bahrain');
+// Setting up a route
+// main page static
+app.get('/', (req, res) => {
+    res.render('index')
+})
 
 
-INSERT INTO PERSON
-(name, email, dob, country)
-VALUES ('Yousif', 'yousif@gmail.com' ,  TO_DATE('04/05/1999', 'DD/MM/YYYY'), 'Bahrain');
+// import the router from users.js
+// can use it to map routers with the requires
+const userRouter = require('./routes/users')
 
 
 
-*/
+
+// Set up the main url part
+app.use('/users', userRouter)
+
+
+// next mostly used in middleware
+function logger(req, res, next) {
+    console.log(req.originalUrl)
+    next()
+}
+
+
+// Listen on port 3000
+app.listen(3000)
