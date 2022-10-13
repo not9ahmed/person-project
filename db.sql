@@ -3,10 +3,10 @@
 
 
 CREATE DATABASE persons_db;
-\connect world
+\connect persons_db
 
 
-CREATE TABLE PERSON (
+CREATE TABLE persons (
     id SERIAL PRIMARY KEY,
     name VARCHAR(20),
     email VARCHAR(40) UNIQUE,
@@ -17,6 +17,6 @@ CREATE TABLE PERSON (
 );
 
 -- Insert to database
-INSERT INTO PERSON(name, email, dob, country) VALUES ('Ahmed', 'ahmedl@gmail.com' ,  TO_DATE('03/09/1999', 'DD/MM/YYYY'), 'Bahrain');
-INSERT INTO PERSON (name, email, dob, country) VALUES ('Yousif', 'yousif@gmail.com' ,  TO_DATE('04/05/1999', 'DD/MM/YYYY'), 'Bahrain');
-INSERT INTO PERSON (name, email, dob, country) VALUES ('Ali', 'ali@gmail.com' ,  TO_DATE('01/01/1999', 'DD/MM/YYYY'), 'Bahrain');
+INSERT INTO persons(name, email, dob, country) VALUES ('Ahmed', 'ahmedl@gmail.com' ,  TO_DATE('03/09/1999', 'DD/MM/YYYY'), 'Bahrain');
+INSERT INTO persons (name, email, dob, country) VALUES ('Yousif', 'yousif@gmail.com' ,  TO_DATE('04/05/1999', 'DD/MM/YYYY'), 'Bahrain');
+INSERT INTO persons (name, email, dob, country) VALUES ('Ali', 'ali@gmail.com' ,  TO_DATE('01/01/1999', 'DD/MM/YYYY'), 'Bahrain');

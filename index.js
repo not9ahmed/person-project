@@ -37,12 +37,14 @@ const userRouter = require('./routes/users')
 app.use('/users', userRouter)
 
 
-// next mostly used in middleware
-function logger(req, res, next) {
-    console.log(req.originalUrl)
-    next()
-}
 
 
 // Listen on port 3000
 app.listen(3000)
+
+
+const db = require('./database.js')
+
+
+console.log(db)
+
